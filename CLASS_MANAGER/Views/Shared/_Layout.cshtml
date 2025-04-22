@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - CLASS_MANAGER</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="~/Content/images/logo.png" alt="Logo" class="logo">
+                    <h1 class="site-title">CLASS_MANAGER</h1>
+                </div>
+                <div class="banner-img">
+                    <img src="~/Content/images/banner.png" alt="Banner">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-menu">
+        <div class="container">
+            <ul class="menu-list">
+                <li><a href="@Url.Action("Index", "Home")"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                <li><a href="#"><i class="fas fa-bullhorn"></i> Thông Báo</a></li>
+                <li><a href="#"><i class="fas fa-tasks"></i> Bài Tập</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Thành Viên</a></li>
+                <li><a href="#"><i class="fas fa-book"></i> Tài Liệu</a></li>
+                <li><a href="#"><i class="fas fa-search"></i> Tìm Kiếm</a></li>
+                <li><a href="#"><i class="fas fa-sign-in-alt"></i> Đăng Nhập</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 - CLASS_MANAGER - <a href="@Url.Action("Privacy", "Home")">Chính sách bảo mật</a></p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

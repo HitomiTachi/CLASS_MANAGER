@@ -1,0 +1,160 @@
+﻿@model CLASS_MANAGER.Models.HomeViewModel
+@{
+    ViewBag.Title = "Trang Chủ";
+}
+
+<div class="content-wrapper">
+    <div class="sidebar">
+        <div class="sidebar-box">
+            <div class="sidebar-box-title">
+                Tài Khoản
+            </div>
+            <div class="sidebar-box-content">
+                <ul class="sidebar-menu">
+                    <li><a href="#"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a></li>
+                    <li><a href="#"><i class="fas fa-user-edit"></i> Cập nhật thông tin</a></li>
+                    <li><a href="#"><i class="fas fa-key"></i> Đổi mật khẩu</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="sidebar-box">
+            <div class="sidebar-box-title">
+                Bài Giảng Tại Các Trường
+            </div>
+            <div class="sidebar-box-content">
+                <ul class="school-list">
+                    @foreach (var school in Model.Schools)
+                    {
+                        <li>
+                            <a href="#">@school.Name</a>
+                            <a href="#" class="edit-icon"><i class="fas fa-edit"></i></a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <div class="sidebar-box">
+            <div class="sidebar-box-title">
+                Thông Báo Mới
+            </div>
+            <div class="sidebar-box-content">
+                <ul class="sidebar-menu">
+                    <li><a href="#"><i class="fas fa-circle-info"></i> CLASS_MANAGER tổ chức Hội thảo "Sinh viên giỏi nghề 2025"</a></li>
+                    <li><a href="#"><i class="fas fa-circle-info"></i> Từ ngày 25/04/2025 Website sẽ sử dụng tên miền http://www.class-manager.net</a></li>
+                    <li><a href="#"><i class="fas fa-circle-info"></i> Hướng dẫn nộp bài tập lớn môn Lập trình Web</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="content-box">
+            <div class="content-box-title">
+                Bài Tập Mới Nhất
+            </div>
+            <div class="content-box-body">
+                <div class="article-list">
+                    @foreach (var assignment in Model.Assignments)
+                    {
+                        <div class="article-item">
+                            <div class="article-image">
+                                <img src="@assignment.ImageUrl" alt="@assignment.Title">
+                            </div>
+                            <div class="article-content">
+                                <h3><a href="#">@assignment.Title</a></h3>
+                                <p class="article-desc">@assignment.Description</p>
+                                <a href="#" class="read-more">Xem chi tiết <i class="fas fa-arrow-right" style="font-size: 11px;"></i></a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <div class="content-box-title">
+                Danh Sách Thành Viên
+            </div>
+            <div class="content-box-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Họ và tên</th>
+                            <th>MSSV</th>
+                            <th>Lớp</th>
+                            <th>Vai trò</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var member in Model.Members)
+                        {
+                            <tr>
+                                <td>@member.Name</td>
+                                <td>@member.StudentId</td>
+                                <td>@member.Class</td>
+                                <td>
+                                    @switch (member.Role)
+                                    {
+                                        case CLASS_MANAGER.Models.MemberRole.Teacher:
+                                            <span class="badge badge-primary">Giảng viên</span>
+                                            break;
+                                        case CLASS_MANAGER.Models.MemberRole.ClassLeader:
+                                            <span class="badge badge-warning">Lớp trưởng</span>
+                                            break;
+                                        case CLASS_MANAGER.Models.MemberRole.Student:
+                                            <span class="badge badge-success">Sinh viên</span>
+                                            break;
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <div class="content-box-title">
+                Thông Báo Mới Nhất
+            </div>
+            <div class="content-box-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tiêu đề</th>
+                            <th>Người đăng</th>
+                            <th>Ngày đăng</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var announcement in Model.Announcements)
+                        {
+                            <tr>
+                                <td>@announcement.Title</td>
+                                <td>@announcement.Author</td>
+                                <td>@announcement.Date.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @switch (announcement.Status)
+                                    {
+                                        case CLASS_MANAGER.Models.AnnouncementStatus.Important:
+                                            <span class="badge badge-danger">Quan trọng</span>
+                                            break;
+                                        case CLASS_MANAGER.Models.AnnouncementStatus.Warning:
+                                            <span class="badge badge-warning">Lưu ý</span>
+                                            break;
+                                        case CLASS_MANAGER.Models.AnnouncementStatus.Normal:
+                                            <span class="badge badge-primary">Thông báo</span>
+                                            break;
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

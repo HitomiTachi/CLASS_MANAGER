@@ -1,0 +1,27 @@
+﻿@model CLASS_MANAGER.Models.ErrorViewModel
+@{
+    ViewBag.Title = "Lỗi";
+}
+
+<div class="content-wrapper">
+    <div class="main-content">
+        <div class="content-box">
+            <div class="content-box-title">
+                @(Model.ErrorTitle ?? "Lỗi")
+            </div>
+            <div class="content-box-body">
+                <h2>@(Model.ErrorMessage ?? "Đã xảy ra lỗi trong quá trình xử lý yêu cầu của bạn.")</h2>
+
+                @if (Model.ShowRequestId)
+                {
+                    <p>
+                        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                    </p>
+                }
+
+                <p>Vui lòng thử lại sau hoặc liên hệ với quản trị viên nếu lỗi vẫn tiếp tục xảy ra.</p>
+                <p><a href="@Url.Action("Index", "Home")" class="btn btn-primary">Quay về trang chủ</a></p>
+            </div>
+        </div>
+    </div>
+</div>
